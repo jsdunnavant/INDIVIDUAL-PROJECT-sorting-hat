@@ -55,13 +55,42 @@ const mySortHat = () => {
     <div class="card-body">
     <h5 class="card-title">Time to get served</h5>
     <p class="card-text">Are you nervous</p>
-    <a href="#" class="btn btn-primary">T-T-T-Try your luck!</a>
     </div>
 </div>`;
   renderToDom('#container', domString);
 };
 
+const house = {
+  ravenclaw: "ravenclaw",
+  gryffindor: "gryffindor",
+  hufflepuff: "hufflepuff",
+  slytherin: "slytherin"
+}
 
+const randomHouse = () => {
+  const random = Math.random(house)
+  return random[Math.floor(Math.random()) * house.length]
+} 
+
+debugger
+console.log(randomHouse(house));
+
+
+
+
+const formBtn = () => {
+  let domString = "";
+  domString = `
+  <form>
+  <div class="mb-3">
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3 form-check">
+  </div>
+  <button type="submit" class="btn btn-primary">Sort this out</button>
+</form>`;
+renderToDom("#sortingHat", domString);
+}
 
 const filterBtns = () => {
   let domString = "";
@@ -76,22 +105,21 @@ const filterBtns = () => {
   renderToDom("#filterDiv", domString);
 }
 
-const filterFunction = (arr) => {
-  let domString = "";
-  for (const students of arr) {
-    domString += `
-    <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-       <h5 class="card-title">${students.name}</h5>
-         <p class="card-text">${students.house}</p>
-         <a href="#" class="btn btn-primary">${students.house}</a>
-      </div>
-    </div>
-    `
-  }
-  renderToDom("#sortingHat", domString)
-}
+// const filterFunction = (arr) => {
+//   let domString = "";
+//   for (const students of arr) {
+//     domString += `
+//     <div class="card" style="width: 18rem;">
+//     <img src="..." class="card-img-top" alt="...">
+//       <div class="card-body">
+//        <h5 class="card-title">${students.name}</h5>
+//          <p class="card-text">${students.house}</p>
+//       </div>
+//     </div>
+//     `
+//   }
+//   renderToDom("#sortingHat", domString)
+// }
 
 
 
@@ -118,7 +146,8 @@ const eventListeners = () => {
 
 const startApp = () => {
   mySortHat();
-  filterFunction(students);
+  // filterFunction(students);
+  formBtn();
   filterBtns();
   eventListeners();
 }
