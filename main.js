@@ -1,46 +1,3 @@
-const students = [
- {
-  id: 1,
-  name: "Taylor",
-  house: "ravenclaw",
- },
- {
-   id: 2,
-   name: "Jenna",
-   house: "gryffindor",
- },
- {
-   id: 3,
-   name: "Jamel",
-   house: "hufflepuff",
- },
- {
-   id: 4,
-   name: "Patrick",
-   house: "slytherin",
- },
- {
-   id: 5,
-   name: "Spongebob",
-   house: "hufflepuff",
- },
- {
-   id: 6,
-   name: "Asuna",
-   house: "ravenclaw",
- },
- {
-   id: 7,
-   name: "Kirito",
-   house: "gryffindor",
- },
- {
-   id: 8,
-   name: "Eren",
-   house: "slytherin",
- },
-]
-
 const renderToDom = (divId, textToRender) => {
   const selectedElement = document.querySelector(divId);
   selectedElement.innerHTML = textToRender
@@ -60,22 +17,9 @@ const mySortHat = () => {
   renderToDom('#container', domString);
 };
 
-const house = {
-  ravenclaw: "ravenclaw",
-  gryffindor: "gryffindor",
-  hufflepuff: "hufflepuff",
-  slytherin: "slytherin"
-}
-
-const randomHouse = () => {
-  const random = Math.random(house)
-  return random[Math.floor(Math.random()) * house.length]
-} 
-
-debugger
-console.log(randomHouse(house));
-
-
+const house = ["ravenclaw", "gryffindor", "slytherin", "hufflepuff"];
+const randomHouse = Math.floor(Math.random() * house.length);
+console.log(randomHouse, house[randomHouse]);
 
 
 const formBtn = () => {
@@ -142,7 +86,24 @@ const eventListeners = () => {
       filterFunction(slytherin)
     }
   })
-}
+  document.querySelector("#sortingHat").addEventListener('click', (e) => {
+    if (e.target.id === "sortingHat") {
+      randomHouse(student)
+  }})
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const newStudentCard = {
+      name: document.querySelector('#name').value,
+      house: document.querySelector('#house').value,
+    };
+  
+     students.push(newStudentCard);
+     filterFunction();
+     formModal.hide();
+     form.reset();
+  });
 
 const startApp = () => {
   mySortHat();
@@ -150,5 +111,5 @@ const startApp = () => {
   formBtn();
   filterBtns();
   eventListeners();
-}
-startApp(); 
+};
+startApp();
