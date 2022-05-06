@@ -1,3 +1,5 @@
+import { getStudents } from "./database.js" ;
+
 const renderToDom = (divId, textToRender) => {
   const selectedElement = document.querySelector(divId);
   selectedElement.innerHTML = textToRender
@@ -19,23 +21,20 @@ const mySortHat = () => {
 
 const house = ["ravenclaw", "gryffindor", "slytherin", "hufflepuff"];
 const randomHouse = Math.floor(Math.random() * house.length);
-console.log(randomHouse, house[randomHouse]);
-
 
 const formBtn = () => {
   let domString = "";
   domString = `
   <form>
   <div class="mb-3">
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="text" class="form-control" id="studentName" aria-describedby="emailHelp">
   </div>
-  <div class="mb-3 form-check">
   </div>
-  <button type="submit" class="btn btn-primary">Sort this out</button>
+  <button onclick="randomHouse()" type="submit" class="btn btn-primary">Sort this out</button>
 </form>`;
 renderToDom("#sortingHat", domString);
 }
-
+console.log(randomHouse, house[randomHouse])
 const filterBtns = () => {
   let domString = "";
   domString =  `
@@ -86,30 +85,36 @@ const eventListeners = () => {
       filterFunction(slytherin)
     }
   })
+  // const student = {
+  //   name: "",
+  //   house: "",
+  // } 
 }
-  document.querySelector("#sortingHat").addEventListener('click', (e) => {
-    if (e.target.id === "sortingHat") {
-      randomHouse(student)
-  }})
 
-const form = document.querySelector('form');
+//   document.querySelector("#sortingHat").addEventListener('click', (e) => {
+//     if (e.target.id === "sortingHat") {
+//       randomHouse(student)
+//   }})
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const newStudentCard = {
-      name: document.querySelector('#name').value,
-      house: document.querySelector('#house').value,
-    };
+// const form = document.querySelector('form');
+
+// form.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     const newStudentCard = {
+//       name: document.querySelector('#name').value,
+//       house: document.querySelector('#house').value,
+//     };
   
-     students.push(newStudentCard);
-     filterFunction();
-     formModal.hide();
-     form.reset();
-  });
+//      students.push(newStudentCard);
+//      filterFunction();
+//      formModal.hide();
+//      form.reset();
+//   });
 
 const startApp = () => {
   mySortHat();
-  filterFunction(students);
+  // filterFunction(students);
+
   formBtn();
   filterBtns();
   eventListeners();

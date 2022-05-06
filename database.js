@@ -1,4 +1,5 @@
-const students = [
+export const database = {
+  students: [
   {
    id: 1,
    name: "Taylor",
@@ -39,4 +40,14 @@ const students = [
     name: "Eren",
     house: "slytherin",
   },
- ]
+  ]
+}
+
+ const newStudent = () => {
+  database.students.forEach((item, i) =>{
+  item.id = i + 1;
+ })
+}
+export const getStudents = () => {
+  return database.students.map(student => ({...student}))
+}
