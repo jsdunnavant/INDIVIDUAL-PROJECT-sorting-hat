@@ -86,10 +86,12 @@ const eventListeners = () => {
       filterFunction(slytherin)
     }
   })
+}
   document.querySelector("#sortingHat").addEventListener('click', (e) => {
     if (e.target.id === "sortingHat") {
       randomHouse(student)
   }})
+
 const form = document.querySelector('form');
 
 form.addEventListener('submit', (e) => {
@@ -107,9 +109,10 @@ form.addEventListener('submit', (e) => {
 
 const startApp = () => {
   mySortHat();
-  // filterFunction(students);
+  filterFunction(students);
   formBtn();
   filterBtns();
   eventListeners();
 };
+
 startApp();
