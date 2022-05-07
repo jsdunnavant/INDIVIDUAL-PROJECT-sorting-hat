@@ -8,11 +8,11 @@ const renderToDom = (divId, textToRender) => {
   selectedElement.innerHTML = textToRender;
 };
 
-const newStudent = () => {
-  students.forEach((item, i) => {
-    item.id = i + 1;
-  });
-};
+// const newStudent = () => {
+//   students.forEach((item, i) => {
+//     item.id = i + 1;
+//   });
+// };
 
 const mySortHat = () => {
   const domString = `
@@ -28,7 +28,7 @@ const mySortHat = () => {
   renderToDom("#container", domString);
 };
 
-//
+
 // const randomHouse = Math.floor(Math.random() * house.length);
 
 const studentForm = () => {
@@ -39,10 +39,27 @@ const studentForm = () => {
     <input type="text" class="form-control" id="studentName" aria-describedby="emailHelp">
   </div>
   </div>
-  <button type="submit" class="btn btn-primary">Sort this out</button>
+  <button  type="submit" id="sortBtn" class="btn btn-primary">Sort this out</button>
 </form>`;
   renderToDom("#sortingHat", domString);
 };
+
+const renderToCard = (arr) => {
+  let domString = "";
+  for (let students of arr){
+    domString += `
+    <div class="card" style="width: 18rem;">
+   <img src="..." class="card-img-top" alt="...">
+     <div class="card-body">
+       <h5 class="card-title">${students.name}</h5>
+         <p class="card-text">${students.house}</p>
+      </div>
+    </div> `;
+    renderToDom("#filterDiv", domString)
+  }
+};
+
+
 
 const filterBtns = () => {
   let domString = "";
@@ -56,40 +73,28 @@ const filterBtns = () => {
   `;
   renderToDom("#filterDiv", domString);
 };
-const renderToCard = (arr, divId) => {
-  let domString = `<h2>Students</h2>`;
-  for (let newStudent of arr){
+
+
+
+
+
+
+
+const filterFunction = (arr) => {
+  let domString = "";
+  for (const students of arr) {
     domString += `
     <div class="card" style="width: 18rem;">
-   <img src="..." class="card-img-top" alt="...">
-     <div class="card-body">
-       <h5 class="card-title">${newStudent.name}</h5>
-         <p class="card-text">${newStudent.house}</p>
+    <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+       <h5 class="card-title">${students.name}</h5>
+         <p class="card-text">${students.house}</p>
       </div>
-    </div> `;
-    renderToDom("#newCard", domString)
+    </div>
+    `
   }
-};
-
-
-
-
-
-// const filterFunction = (arr) => {
-//   let domString = "";
-//   for (const students of arr) {
-//     domString += `
-//     <div class="card" style="width: 18rem;">
-//     <img src="..." class="card-img-top" alt="...">
-//       <div class="card-body">
-//        <h5 class="card-title">${students.name}</h5>
-//          <p class="card-text">${students.house}</p>
-//       </div>
-//     </div>
-//     `
-//   }
-//   renderToDom("#sortingHat", domString)
-// }
+  renderToDom("#letsSort", domString)
+}
 
 // figure out filterfunction//
 const eventListeners = () => {
@@ -148,9 +153,12 @@ const eventListeners = () => {
 //      form.reset();
 //   });
 
+
+
+
 const assignHouse = () => {
   const houses = ["ravenclaw", "gryffindor", "slytherin", "hufflepuff"];
-  document.querySelector("#studentName").addEventListener("submit", (e) => {
+  document.querySelector("#sortBtn").addEventListener("submit", (e) => {
     e.preventDefault();
     // const newStudentId = () => {
     //   students.forEach((item, i) =>{
@@ -166,23 +174,24 @@ const assignHouse = () => {
     addedStudent.push(addStudent);
     students.push(addStudent);
     document.querySelector("#studentName").reset();
-    renderToCard(addedStudent, "#newHouse")
+    renderToCard(addedStudent, "#filterDiv")
   });
+  // renderToDom("#cardTime", addedStudent)
   // console.log(assignHouse());
 };
+
 // id: students.forEach((item, i) =>{
 //   //     item.id = i + 1;
 //   //    }),
 
 const startApp = () => {
-  newStudent();
+  // newStudent();
   mySortHat();
-  // filterFunction(students);
+  filterFunction(addedStudent);
   studentForm();
   filterBtns();
-  renderToCard();
   eventListeners();
-  assignHouse();
+  assignHouse(addedStudent);
 };
 
 startApp();
