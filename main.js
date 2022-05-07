@@ -1,7 +1,7 @@
 // import { getStudents } from "./database.js" ;
 import { addedStudent } from "./database.js";
 import { students } from "./database.js";
-// import { armyOfEvil } from "./database.js";
+
 
 const renderToDom = (divId, textToRender) => {
   const selectedElement = document.querySelector(divId);
@@ -176,7 +176,7 @@ const assignHouse = () => {
     document.querySelector("#studentName").reset();
     renderToCard(addedStudent, "#filterDiv")
   });
-  // renderToDom("#cardTime", addedStudent)
+    renderToDom("#cardTime", addedStudent)
   // console.log(assignHouse());
 };
 

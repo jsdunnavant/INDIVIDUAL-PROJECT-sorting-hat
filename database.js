@@ -46,8 +46,6 @@ export const getStudents = () => {
 }
 
 const addedStudent = [];
-const armyOfEvil = [];
 
 export { students };
 export { addedStudent };
-export { armyOfEvil };
