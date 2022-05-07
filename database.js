@@ -1,5 +1,4 @@
-export const database = {
-  students: [
+const students = [
   {
    id: 1,
    name: "Taylor",
@@ -40,14 +39,15 @@ export const database = {
     name: "Eren",
     house: "slytherin",
   },
-  ]
-}
+];
 
- const newStudent = () => {
-  database.students.forEach((item, i) =>{
-  item.id = i + 1;
- })
-}
 export const getStudents = () => {
   return database.students.map(student => ({...student}))
 }
+
+const addedStudent = [];
+const armyOfEvil = [];
+
+export { students };
+export { addedStudent };
+export { armyOfEvil };
